@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.pagination a {
+  @apply px-4 py-2 m-1 bg-white text-red rounded;
+}
+.pagination .previous_page,
+.pagination .next_page {
+  @apply px-4 py-2 m-1 bg-white text-red rounded;
+}
+.pagination .disabled {
+  @apply px-4 py-2 m-1 bg-white text-red rounded opacity-50;
+}
