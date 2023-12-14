@@ -8,6 +8,13 @@ module.exports = {
     './app/views/**/*.{erb,haml,html,slim}'
   ],
   theme: {
+    opacity: {
+      '0': '0',
+      '25': '.25',
+      '50': '.5',
+      '75': '.75',
+      '100': '1',
+    },
     extend: {
       colors: {
         'red': '#d63933',
@@ -17,6 +24,13 @@ module.exports = {
         'poppins': ['Poppins', 'sans-serif']
       },
     },
+    variants: {
+      extend: {
+        opacity: ['responsive', 'hover', 'focus', 'group-hover'],
+        padding: ['group-hover'],
+        divideColor: ['group-hover'],
+      }
+    }
   },
   plugins: [
     require('@tailwindcss/forms'),
