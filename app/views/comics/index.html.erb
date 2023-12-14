@@ -1,0 +1,13 @@
+<div class="p-4">
+  <h1 class="text-2x font-bold mb-4">Comics</h1>
+ 
+  <div class="grid grid-cols-3 gap-4">
+    <% @comics.each do |comic| %>
+      <div class="border p-4">
+        <h2 class="text-xl font-semibold mb-2"><%= comic.title %></h2>
+        <%= image_tag comic.cover %>
+      </div>
+    <% end %>
+  </div>
+ </div>
+ 
