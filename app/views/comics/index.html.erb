@@ -1,8 +1,13 @@
 <div class="p-32"> 
+  <div class="flex justify-between py-4 text-center text-3xl hover:text-red active:text-rose-950">
+    <%= will_paginate @comics, :page_links => false, :container => false %>
+  </div>
   <div class="grid grid-cols-5 gap-4">
     <% @comics.each do |comic| %>
       <%= render 'comics/comic', comic: comic %>
     <% end %>
   </div>
- </div>
- 
+  <div class="flex justify-between py-4 text-center text-3xl hover:text-red active:text-rose-950">
+    <%= will_paginate @comics, :page_links => false, :container => false %>
+  </div>
+</div>

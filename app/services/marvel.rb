@@ -2,7 +2,7 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-module MarvelAPI
+module Marvel
   include Authentication
   
   def self.fetch_comics(characters: nil)
@@ -10,6 +10,7 @@ module MarvelAPI
     query_params['orderBy'] = '-onsaleDate'
     query_params['characters'] = characters if characters
     query_params['limit'] = 100
+    query_params['offset'] = Comic.count
 
     uri = URI(ENV['MARVEL_API_URL'] + '/comics')
     uri.query = URI.encode_www_form(query_params)
@@ -21,7 +22,8 @@ module MarvelAPI
         Comic.create(
           title: comic_data['title'],
           cover_url: comic_data['thumbnail']['path'],
-          characters: comic_data.dig('characters', 'items')&.map { |item| item["name"] } || []
+          characters: comic_data.dig('characters', 'items')&.map { |item| item["name"] } || [],
+          published_at: comic_data['dates'].first['date']
         )
       end
     end

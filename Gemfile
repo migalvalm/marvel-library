@@ -14,6 +14,8 @@ gem "redis", ">= 4.0.1"
 gem "bootsnap", require: false
 gem 'dotenv-rails'
 gem "tailwindcss-rails", "~> 2.0"
+gem 'will_paginate', '~> 4.0'
+
 
 
 group :development, :test do

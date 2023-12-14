@@ -1,6 +1,6 @@
 require 'digest'
 
-module MarvelAPI
+module Marvel
   module Authentication
     extend ActiveSupport::Concern
   
