@@ -13,9 +13,9 @@
 class Comic < ApplicationRecord
   self.per_page = 15
 
-  # The Marvel Comics API does not provide full paths to images. 
-  # Instead, images are represented as a partial path to an image file and the canonical extension of that file.
+  # The Marvel Comics API provides relative paths to an image file. 
   # We have to select from a set of image variants (predefined sizes and ratios)
+  # https://developer.marvel.com/documentation/images
   def cover
     cover_url + '/portrait_uncanny.jpg'
   end

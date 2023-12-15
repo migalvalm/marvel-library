@@ -1,8 +1,6 @@
-<div class="p-32"> 
-  <div class="py-8"> 
-    <%= render partial: 'shared/pagination', with: { data: @comics } %>
-    <%= render partial: 'shared/entries_info', with: { data: @comics } %>
-  </div>
+<%= render partial: 'comics/search_bar', with: { data: @comics } %>
+
+<div class="px-32 py-64"> 
   <div class="grid grid-cols-5 gap-4">
     <% @comics.each do |comic| %>
       <%= render 'comics/comic', comic: comic %>
