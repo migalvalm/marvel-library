@@ -3,13 +3,19 @@
     <%= image_tag "marvel_logo.png", alt: "Marvel Logo", size: "150x50" %>
 
     <div class="flex items-center">
-      <input class="
-          h-10 px-5 pr-16 
-          border-2 border-gray-300 
-          bg-white shadow-xl shadow-red-50 rounded 
-          text-sm focus:outline-none
-        "
-        type="search" name="search" placeholder="Search...">
+      <%= form_with url: search_comics_path, method: :get, remote: true do |f| %>
+        <input 
+          class="
+            h-10 px-5 pr-16 
+            border-2 border-gray-300 
+            bg-white shadow-xl shadow-red-50 rounded 
+            text-sm focus:outline-none
+          "
+          type="search" 
+          name="search" 
+          placeholder="Search..."
+        >
+      <% end %>
     </div>
   </div>
 </nav>
