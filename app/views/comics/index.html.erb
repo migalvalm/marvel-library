@@ -1,21 +1,15 @@
 <div class="p-32"> 
-  <div class="flex justify-between py-8">
-    <div class="text-center text-red"> 
-      <%= page_entries_info @comics %>
-    </div>
-
-    <%= will_paginate @comics, :page_links => false, class: 'pagination', previous_label: 'Previous', next_label: 'Next' %>
+  <div class="py-8"> 
+    <%= render partial: 'shared/pagination', with: { data: @comics } %>
+    <%= render partial: 'shared/entries_info', with: { data: @comics } %>
   </div>
   <div class="grid grid-cols-5 gap-4">
     <% @comics.each do |comic| %>
       <%= render 'comics/comic', comic: comic %>
     <% end %>
   </div>
-  <div class="flex justify-between py-8">
-    <div class="text-center text-red"> 
-      <%= page_entries_info @comics %>
-    </div>
-
-    <%= will_paginate @comics, :page_links => false, class: 'pagination', previous_label: 'Previous', next_label: 'Next' %>
+  <div class="py-8"> 
+    <%= render partial: 'shared/entries_info', with: { data: @comics } %>
+    <%= render partial: 'shared/pagination', with: { data: @comics } %>
   </div>
 </div>

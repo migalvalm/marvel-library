@@ -17,8 +17,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        'red': '#d63933',
-        'black': '#2b2b2b'
+        'red': {
+          '100':'#d63933',
+          '50':'#be1c1d'
+        },
+        'black': '#2b2b2b',
       },
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif']
