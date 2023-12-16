@@ -5,7 +5,7 @@ class ComicsController < ApplicationController
       if search_term.present?
         search_comics_by_search_term
       else
-        Marvel.fetch_comics
+        fetch_most_recent_comics
       end
 
       # Reload the comics to include the newly fetched ones
@@ -19,11 +19,15 @@ class ComicsController < ApplicationController
 
   private
 
-  def search_comics_by_search_term
+  def fetch_comics_by_search_term
     Marvel.search_comics_by_character(
       character_id: Marvel.fetch_character_id(character: search_term),
       character_name: search_term
     )
+  end
+
+  def fetch_most_recent_comics
+    Marvel.fetch_comics
   end
 
   def comics
