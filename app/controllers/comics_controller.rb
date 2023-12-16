@@ -2,11 +2,11 @@ class ComicsController < ApplicationController
   def index
     # Checks if user is at the last page
     if comics.total_pages == page.to_i
-      # Fetch more 100 comics
-      Marvel.fetch_comics if search_term.blank?
-
-      # Search for more 100 comics
-      search_comics_by_search_term if search_term.present?
+      if search_term.present?
+        search_comics_by_search_term
+      else
+        Marvel.fetch_comics
+      end
 
       # Reload the comics to include the newly fetched ones
       comics
@@ -16,19 +16,8 @@ class ComicsController < ApplicationController
   def search
     search_comics_by_search_term if search_term.present?
   end
- 
-  def favorite
-  end
 
   private
-
-  def comics
-    @comics ||= if search_term.blank?
-      Comic.page(page).order(published_at: :desc)
-    else
-      Comic.where("? = ANY(characters)", search_term).page(page).order(published_at: :desc)
-    end
-  end
 
   def search_comics_by_search_term
     Marvel.search_comics_by_character(
@@ -37,12 +26,24 @@ class ComicsController < ApplicationController
     )
   end
 
+  def comics
+    @comics = if search_term.blank?
+      Comic.page(page).order(published_at: :desc)
+    else
+      Comic.where("? = ANY(characters)", search_term).page(page).order(published_at: :desc)
+    end
+  end
+
   def search_term
-    params[:search] || nil
+    permitted_params[:search] || nil
   end
 
   def page
-    params[:page] == "search" ? 1 : params[:page]
+    permitted_params[:page] == 'search' ? 1 : permitted_params[:page]
+  end
+
+  def permitted_params
+    params.permit(:page, :search, :comic_id)
   end
  end
  

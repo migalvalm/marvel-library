@@ -1,15 +1,33 @@
+<% is_favorite = cookies[:favorites]&.include?(comic.id.to_s) %>
+
 <div 
   class="
-    group relative 
+    group relative
     hover:border-b-8 hover:border-red-100 focus:border-8
     active:border-8 active:border-red-100
   "
+  data-controller="comic"
+  data-comic-id="<%= comic.id %>"
 >
+  <div 
+    class="
+      absolute right-0 top-0 transition-none
+      group-hover:opacity-100 group-hover:transition-opacity
+      <%= is_favorite ?  'p-8 mt-8' : ' p-7 mt-8' %>
+    "
+    style="
+      background-repeat: no-repeat;
+      background-image: url('/assets/<%= is_favorite ? 'heart_on.png' : 'heart_off.png' %>');
+    "
+    data-comic-target="heartImage"
+  >
+  </div>
+
   <img 
     src="<%= comic.cover %>" 
     class="
-      w-full h-auto 
-      transition duration-500 ease-in-out opacity-100 
+      w-full h-auto
+      opacity-100 
       group-hover:opacity-25
     "
   >
@@ -22,4 +40,3 @@
     <h2 class="text-center font-bold uppercase p-4"><%= comic.title %></h2>
   </div>
 </div>
- 
