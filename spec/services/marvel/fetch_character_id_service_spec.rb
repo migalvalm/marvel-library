@@ -7,7 +7,6 @@ RSpec.describe Marvel::FetchCharacterIdService do
 
   describe '#call' do
     it 'returns a character id' do
-      # Mock the HTTP request
       allow(Net::HTTP).to receive(:get).and_return('{"data": {"results": [{"id": 1}]}}')
 
       character_id = service.call(character: 'Character 1')

@@ -11,7 +11,7 @@ RSpec.describe Marvel::SearchComicsByCharacterService do
   before do
     allow(Marvel::FetchCharacterIdService).to receive(:new).and_return(double(call: character_id))
     allow(service).to receive(:fetch).and_return(response)
-    allow(service).to receive(:save) # Stub the save method
+    allow(service).to receive(:save)
   end
 
   describe '#call' do
