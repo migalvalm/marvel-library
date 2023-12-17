@@ -14,7 +14,6 @@ module Marvel
       }
 
       response = fetch('/comics', query_params)
-      binding.pry
       save(response)
     end
   end
