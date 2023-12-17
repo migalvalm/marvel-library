@@ -1,5 +1,4 @@
 <% is_favorite = cookies[:favorites]&.include?(comic.id.to_s) %>
-<% heart_image = '/assets/#{is_favorite ? "heart_on.png" : "heart_off.png"}' %>
 
 <div 
   class='
@@ -18,7 +17,7 @@
     '
     style='
       background-repeat: no-repeat;
-      background-image: url("<%=heart_image%>");
+      background-image: url("/assets/<%= is_favorite ? 'heart_on.png' : 'heart_off.png' %>");
     '
     data-comic-target='heartImage'
   >
