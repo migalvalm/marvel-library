@@ -7,7 +7,6 @@ RSpec.describe Marvel::BaseService do
 
   describe '#fetch' do
     it 'returns a response' do
-      # Mock the HTTP request
       allow(Net::HTTP).to receive(:get).and_return('{"data": {}}')
 
       response = service.fetch('/comics', {})
