@@ -1,33 +1,21 @@
 class ComicsController < ApplicationController
-  def index
-    # Checks if user is at the last page
-    if comics.total_pages == page.to_i
-      if search_term.present?
-        search_comics_by_search_term
-      else
-        fetch_most_recent_comics
-      end
+  before_action :fetch_comics, only: [:index]
 
-      # Reload the comics to include the newly fetched ones
-      comics
-    end
-  end
- 
-  def search
-    search_comics_by_search_term if search_term.present?
+  def index
+    comics
   end
 
   private
 
-  def fetch_comics_by_search_term
-    Marvel.search_comics_by_character(
-      character_id: Marvel.fetch_character_id(character: search_term),
-      character_name: search_term
-    )
-  end
-
-  def fetch_most_recent_comics
-    Marvel.fetch_comics
+  def fetch_comics
+    # If the current page is the same amount as the total pages that the Comics (with the current filters) are divided into
+    if comics.total_pages == page.to_i
+      if search_term.present?
+        Marvel::SearchComicsByCharacterService.new.call(search_term)
+      else
+        Marvel::FetchComicsService.new.call
+      end
+    end
   end
 
   def comics
@@ -39,15 +27,15 @@ class ComicsController < ApplicationController
   end
 
   def search_term
-    permitted_params[:search] || nil
+    permitted_params[:search_term] || nil
   end
 
   def page
-    permitted_params[:page] == 'search' ? 1 : permitted_params[:page]
+    permitted_params[:page]
   end
 
   def permitted_params
-    params.permit(:page, :search, :comic_id)
+    params.permit(:page, :search_term)
   end
  end
  

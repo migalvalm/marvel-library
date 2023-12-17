@@ -1,42 +1,43 @@
 <% is_favorite = cookies[:favorites]&.include?(comic.id.to_s) %>
+<% heart_image = '/assets/#{is_favorite ? "heart_on.png" : "heart_off.png"}' %>
 
 <div 
-  class="
+  class='
     group relative
     hover:border-b-8 hover:border-red-100 focus:border-8
     active:border-8 active:border-red-100
-  "
-  data-controller="comic"
-  data-comic-id="<%= comic.id %>"
+  '
+  data-controller='comic'
+  data-comic-id='<%= comic.id %>'
 >
   <div 
-    class="
+    class='
       absolute right-0 top-0 transition-none
       group-hover:opacity-100 group-hover:transition-opacity
       p-8 mt-8
-    "
-    style="
+    '
+    style='
       background-repeat: no-repeat;
-      background-image: url('/assets/<%= is_favorite ? 'heart_on.png' : 'heart_off.png' %>');
-    "
-    data-comic-target="heartImage"
+      background-image: url("<%=heart_image%>");
+    '
+    data-comic-target='heartImage'
   >
   </div>
 
   <img 
-    src="<%= comic.cover %>" 
-    class="
+    src='<%= comic.cover %>' 
+    class='
       w-full h-auto
       opacity-100 
       group-hover:opacity-25
-    "
+    '
   >
-  <div class="
+  <div class='
     bg-white opacity-0 
       absolute w-full bottom-0 left-0 
       group-hover:opacity-100 group-hover:transition-opacity
-    "
+    '
   >
-    <h2 class="text-center font-bold uppercase p-4"><%= comic.title %></h2>
+    <h2 class='text-center font-bold uppercase p-4'><%= comic.title %></h2>
   </div>
 </div>
