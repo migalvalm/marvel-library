@@ -16,8 +16,6 @@ gem 'dotenv-rails'
 gem "tailwindcss-rails", "~> 2.0"
 gem 'will_paginate', '~> 4.0'
 
-
-
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem 'rspec-rails'
@@ -26,6 +24,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rspec-rails'
   gem 'rails-controller-testing'
   gem 'factory_bot_rails'
   gem 'faker'
