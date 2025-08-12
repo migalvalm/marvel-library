@@ -1,7 +1,7 @@
 # Marvel Comics Library
 <img width="1678" alt="Screenshot 2023-12-17 at 22 32 16" src="https://github.com/migalvalm/marvel-library/assets/59445459/9ce72107-b3be-4b58-bac3-4d66850caae0">
 
-This project is a Rails application that showcases comic covers from the Marvel API. It uses Turbo, Stimulus, and Tailwind to create a modern, reactive web application. The WillPaginate gem is used to handle pagination.
+This project is a Rails application that showcases comic covers from the Marvel API. It uses Stimulus, and Tailwind to create a modern, reactive web application. The WillPaginate gem is used to handle pagination.
 
 ## Getting Started
 
